@@ -1,3 +1,4 @@
+import BasicDragDropList from "@/components/basic-drag-drop-list";
 import InteractiveTimeGrid from "@/components/interactive-time-grid";
 import Image from "next/image";
 
@@ -9,6 +10,7 @@ export default function Home() {
       </h1>
       <p>I'm going to add the component in below:</p>
       <InteractiveTimeGrid />
+      <BasicDragDropList />
     </main>
   );
 }

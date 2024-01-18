@@ -6,8 +6,19 @@ function middleTime(startTime: Date, endTime: Date) {
 }
 function averageTime(times: Date[]) {
   const total = times.reduce((acc, time) => acc + time.getTime(), 0);
-  console.log("Average Time:", new Date(total / times.length).toLocaleString());
-  return new Date(total / times.length);
+  const averageMilliseconds = total / times.length;
+  const roundedMilliseconds =
+    Math.round(averageMilliseconds / (30 * 60 * 1000)) * (30 * 60 * 1000);
+  const roundedTime = new Date(roundedMilliseconds);
+  console.log(
+    "Average Time:",
+    roundedTime.toLocaleTimeString([], {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+  );
+  return roundedTime;
 }
 
 function getMedianTimes() {
@@ -30,9 +41,36 @@ function getMedianTimes() {
 export default function InteractiveTimeGrid() {
   const medianTimes = getMedianTimes();
   const average = averageTime(medianTimes);
+  const startTimeGrid = new Date(average.getTime() - 6 * 60 * 60 * 1000);
+  const gridTimes = () => {
+    let times = [];
+
+    for (let i = 0; i < 12; i++) {
+      const time = new Date(startTimeGrid.getTime() + i * 60 * 60 * 1000);
+      console.log(
+        time.toLocaleTimeString([], {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
+      times.push(time);
+    }
+
+    return times;
+  };
+
   return (
     <div className="grid grid-cols-24 bg-slate-500">
-      <div className="col-span-6 bg-yellow-300">test</div>
+      {gridTimes().map((time, index) => (
+        <div key={index} className="bg-slate-400 col-span-2">
+          {time.toLocaleTimeString([], {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+          })}
+        </div>
+      ))}
     </div>
   );
 }
