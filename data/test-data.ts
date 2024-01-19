@@ -1,5 +1,6 @@
 export const lunches = [
   {
+    id: 0,
     getsLunch: true,
     name: "Andy",
     shiftStart: new Date(
@@ -13,6 +14,7 @@ export const lunches = [
     ),
   },
   {
+    id: 1,
     getsLunch: true,
     name: "Gabby",
     shiftStart: new Date(
@@ -26,6 +28,7 @@ export const lunches = [
     ),
   },
   {
+    id: 2,
     getsLunch: false,
     name: "Braden",
     shiftStart: new Date(
@@ -39,6 +42,7 @@ export const lunches = [
     ),
   },
   {
+    id: 3,
     getsLunch: true,
     name: "Zach",
     shiftStart: new Date(
